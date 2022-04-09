@@ -1,17 +1,20 @@
+import { useState } from "react";
 import { Stack, TextField, Typography, IconButton, InputAdornment } from "@mui/material";
 import { VisibilityOff, Visibility, AccountBox } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
 import Platforms from "./Platforms";
 import { useForm } from "react-hook-form";
 import { signInUser } from "requests/auth";
-import { useState } from "react";
 import Notification from "components/Notification";
 import StorageService from "config/StorageService";
 import { SESSION_USER } from "config/session";
 import { useChatContext } from "context";
+import { UseFormProps } from "interfaces";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
-  const { setUser, user } = useChatContext();
+  const { setUser } = useChatContext();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(false);
   const [error, setError] = useState(false);
@@ -19,7 +22,7 @@ const SignIn = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  }: UseFormProps = useForm();
 
   const handleLogin = async (items: object) => {
     try {
@@ -27,6 +30,7 @@ const SignIn = () => {
       const res = await signInUser(items);
       StorageService.set(SESSION_USER, res.token);
       setUser(res.data);
+      navigate("/chat");
     } catch (error) {
       setError(true);
     } finally {

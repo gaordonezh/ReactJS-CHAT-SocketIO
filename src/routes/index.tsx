@@ -2,9 +2,11 @@ import { Route, Routes } from "react-router-dom";
 import routes from "./config";
 import Page401 from "pages/Errors/Page401";
 import { useChatContext } from "context";
+import UserService from "config/UserService";
 
 const ConfigRoutes = () => {
-  const {} = useChatContext();
+  const { user } = useChatContext();
+  const token = UserService.token();
 
   return (
     <Routes>
@@ -14,7 +16,13 @@ const ConfigRoutes = () => {
           <Route path={path} element={<Component />} key={ind}>
             {children.map((el, indx) => {
               const { path: ruta, element: Element } = el;
-              return <Route path={ruta} element={true ? <Element /> : <Page401 />} key={indx} />;
+              return (
+                <Route
+                  path={ruta}
+                  element={token && user._id ? <Element /> : <Page401 />}
+                  key={indx}
+                />
+              );
             })}
           </Route>
         ) : (

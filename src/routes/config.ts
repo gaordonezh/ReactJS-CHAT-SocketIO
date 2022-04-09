@@ -22,12 +22,12 @@ const routes = [
     ],
   },
   {
-    path: "/",
+    path: "/chat/",
     element: AdminLayout,
     isPrivate: true,
     children: [
       { path: "", element: Home },
-      { path: "main", element: PrivateContent },
+      { path: "profile", element: PrivateContent },
       { path: "*", element: Page404 },
     ],
   },

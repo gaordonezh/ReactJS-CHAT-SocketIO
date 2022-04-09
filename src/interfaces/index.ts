@@ -27,3 +27,9 @@ export interface ContextProps {
   user: { f_name?: string; l_name?: string; username?: string; _id?: string };
   setUser: Function;
 }
+
+export interface UseFormProps {
+  handleSubmit: Function;
+  register: Function;
+  formState: { errors: any };
+}
