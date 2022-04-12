@@ -9,7 +9,6 @@ const PublicLayout = Loadable(lazy(() => import("layouts/PublicLayout")));
 const Home = Loadable(lazy(() => import("pages/Home")));
 const Login = Loadable(lazy(() => import("pages/Login")));
 // ----------------------------------------------------------------------
-const PrivateContent = Loadable(lazy(() => import("pages/Private")));
 
 const routes = [
   {
@@ -27,7 +26,6 @@ const routes = [
     isPrivate: true,
     children: [
       { path: "", element: Home },
-      { path: "profile", element: PrivateContent },
       { path: "*", element: Page404 },
     ],
   },

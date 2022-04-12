@@ -4,6 +4,7 @@ import GlobalStyles from "theme/GlobalStyles";
 import { BrowserRouter } from "react-router-dom";
 import ChatProvider from "context";
 import moment from "moment-timezone";
+import CustomProvider from "context/custom";
 
 const App = () => {
   moment.tz.setDefault("America/Lima");
@@ -13,7 +14,9 @@ const App = () => {
       <GlobalStyles />
       <BrowserRouter>
         <ChatProvider>
-          <ConfigRoutes />
+          <CustomProvider>
+            <ConfigRoutes />
+          </CustomProvider>
         </ChatProvider>
       </BrowserRouter>
     </ThemeConfig>
