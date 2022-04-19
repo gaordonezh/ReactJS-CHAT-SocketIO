@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   Box,
   Card,
@@ -17,11 +17,21 @@ import ListMessages from "./components/ListMessages";
 
 interface UserProps {
   messages: Array<object>;
-  receiver: { profile_picture?: string; f_name?: string };
+  receiver: { profile_picture?: string; f_name?: string; _id?: string };
   obtainMessages: Function;
+  sendMessage: Function;
+  text: string;
+  setText: Function;
 }
 
-const Messages = ({ messages, receiver, obtainMessages }: UserProps) => {
+const Messages = ({
+  messages,
+  receiver,
+  obtainMessages,
+  sendMessage,
+  text,
+  setText,
+}: UserProps) => {
   const { height } = useCustomContext();
 
   return (
@@ -41,7 +51,7 @@ const Messages = ({ messages, receiver, obtainMessages }: UserProps) => {
           }
         />
         <ScrollBar style={{ height }}>
-          <CardContent sx={{ pb: 5 }}>
+          <CardContent sx={{ pb: 5, border: "1px solid green" }} component="div">
             {messages.length > 0 ? (
               <ListMessages messages={messages} />
             ) : (
@@ -51,7 +61,15 @@ const Messages = ({ messages, receiver, obtainMessages }: UserProps) => {
         </ScrollBar>
         {messages.length > 0 && (
           <Box sx={{ position: "absolute", bottom: 0, width: "100%", bgcolor: "inherit" }} px={6}>
-            <TextField label="Escribe tu mensaje..." fullWidth className="send" />
+            <TextField
+              label="Escribe tu mensaje..."
+              fullWidth
+              className="send"
+              type="text"
+              value={text}
+              onChange={(event) => setText(event.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+            />
           </Box>
         )}
       </Card>

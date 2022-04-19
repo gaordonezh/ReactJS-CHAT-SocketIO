@@ -1,23 +1,21 @@
+import { Fragment } from "react";
 import { Card, Typography, CardContent } from "@mui/material";
 import { Timeline, TimelineItem, TimelineContent } from "@mui/lab";
-import { Fragment } from "react";
+import Animation from "components/Animation";
+import figure from "assets/animations/empty.json";
 
 interface MessageProps {
   messages: Array<{ active?: boolean; content?: string }>;
 }
 
 const ListMessages = ({ messages }: MessageProps) => {
-  console.log(messages);
-
   return (
     <Fragment>
       {messages.length > 1 ? (
-        "READY TO MESSAGES"
-      ) : (
-        <Timeline position="alternate">
+        <Timeline position="alternate" sx={{ border: "1px solid red" }}>
           {messages
             .filter((item) => item.active && item.content !== "initial_message")
-            .map((e, index) => (
+            .map((msg, index) => (
               <TimelineItem key={index}>
                 <TimelineContent
                   sx={{
@@ -28,15 +26,20 @@ const ListMessages = ({ messages }: MessageProps) => {
                 >
                   <Card variant="outlined">
                     <CardContent>
-                      <Typography sx={{ color: "#bbb" }}>
-                        Because you need strength {index}
-                      </Typography>
+                      <Typography sx={{ color: "#bbb" }}>{msg.content}</Typography>
                     </CardContent>
                   </Card>
                 </TimelineContent>
               </TimelineItem>
             ))}
         </Timeline>
+      ) : (
+        <Fragment>
+          <Animation src={figure} style={{ width: "50%" }} />
+          <Typography color="whitesmoke" align="center" variant="body2">
+            ARE YOU READY?
+          </Typography>
+        </Fragment>
       )}
     </Fragment>
   );
