@@ -24,8 +24,9 @@ export interface ThemeProps {
 }
 
 export interface ContextProps {
-  user: { f_name?: string; l_name?: string; username?: string; _id?: string };
+  user: { f_name?: string; l_name?: string; username?: string; email?: string; _id?: string };
   setUser: Function;
+  generalKey: string;
 }
 
 export interface UseFormProps {

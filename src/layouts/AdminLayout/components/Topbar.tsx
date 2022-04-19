@@ -1,7 +1,10 @@
 import { Grid, Typography } from "@mui/material";
 import Logo from "components/Logo";
+import { useChatContext } from "context";
 
 const Topbar = () => {
+  const { user } = useChatContext();
+
   return (
     <Grid container sx={{ border: "1px solid blue" }} direction="row">
       <Grid item xs={3}>
@@ -11,9 +14,7 @@ const Topbar = () => {
       </Grid>
       <Grid item xs={9}>
         <Typography color="whitesmoke" textAlign="justify">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore quaerat architecto
-          veniam iste reiciendis adipisci. Adipisci labore, aliquam sint illum alias quidem neque
-          impedit necessitatibus.
+          {user.f_name} | {user.email}
         </Typography>
       </Grid>
     </Grid>

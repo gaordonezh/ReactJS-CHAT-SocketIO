@@ -81,3 +81,7 @@ table tr th {
   }
 }
  */
+
+.send input {
+  color: #fff !important;
+}

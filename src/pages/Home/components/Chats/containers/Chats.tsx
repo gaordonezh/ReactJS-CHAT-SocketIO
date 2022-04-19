@@ -1,10 +1,28 @@
+import { useEffect, useState } from "react";
 import { Chip, List, Stack, Typography } from "@mui/material";
 import { useCustomContext } from "context/custom";
 import ScrollBar from "react-perfect-scrollbar";
 import Chat from "../../Chat/containers/Chat";
+import { io } from "socket.io-client";
+import { API_SOCKETIO } from "config/api.config";
+import { useChatContext } from "context";
 
-const Chats = () => {
+const socket = io(API_SOCKETIO ?? "");
+
+const Chats = ({ obtainMessages }: { obtainMessages: Function }) => {
   const { height } = useCustomContext();
+  const { generalKey, user } = useChatContext();
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    obtainData();
+  }, []);
+
+  const obtainData = () => {
+    socket.emit("register", user._id);
+    socket.emit("get_users", user._id);
+    socket.on("users_data", (data) => setUsers(data));
+  };
 
   return (
     <List
@@ -23,8 +41,8 @@ const Chats = () => {
       }
     >
       <ScrollBar style={{ height }}>
-        {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((item, index) => (
-          <Chat key={index} />
+        {users.map((item, index) => (
+          <Chat key={index} usr={item} obtainMessages={obtainMessages} />
         ))}
       </ScrollBar>
     </List>
