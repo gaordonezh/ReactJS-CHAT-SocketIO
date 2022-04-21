@@ -7,20 +7,15 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import moment from "moment-timezone";
-import { io } from "socket.io-client";
-import { API_SOCKETIO } from "config/api.config";
-import { useChatContext } from "context";
-
-const socket = io(API_SOCKETIO ?? "");
 
 interface UserProps {
   usr: {
-    profile_picture: string;
-    f_name: string;
-    latestDate: string;
-    latestMessage: string;
-    _id: string;
+    profile_picture?: string;
+    f_name?: string;
+    latestDate?: string;
+    latestMessage?: string;
+    room?: string;
+    _id?: string;
   };
   obtainMessages: Function;
 }
@@ -39,12 +34,13 @@ const Chat = ({ usr, obtainMessages }: UserProps) => {
         }
         secondary={
           <Typography color="GrayText" variant="inherit" noWrap>
-            {usr.latestMessage}
-            <br />
-            <FormHelperText component="span">{moment(usr.latestDate).fromNow()}</FormHelperText>
+            {usr.latestMessage}pending
           </Typography>
         }
       />
+      <ListItemSecondaryAction>
+        <FormHelperText component="span">{usr.latestDate}1h</FormHelperText>
+      </ListItemSecondaryAction>
     </ListItem>
   );
 };

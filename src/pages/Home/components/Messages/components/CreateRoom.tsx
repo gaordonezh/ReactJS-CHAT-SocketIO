@@ -18,11 +18,10 @@ const CreateRoom = ({
     try {
       const toSend = {
         name: `Chat privado de ${user.f_name} y ${receiver.f_name}`,
-        from: user._id,
-        to: receiver._id,
+        sender: user._id,
+        users: [receiver._id, user._id],
       };
-      const result = await createRoom(toSend);
-      console.log(result);
+      await createRoom(toSend);
       obtainMessages(receiver);
     } catch (error) {
       console.log(error);

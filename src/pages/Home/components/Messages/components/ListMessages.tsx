@@ -5,23 +5,24 @@ import Animation from "components/Animation";
 import figure from "assets/animations/empty.json";
 
 interface MessageProps {
-  messages: Array<{ active?: boolean; content?: string }>;
+  messages: Array<{ active?: boolean; content?: string; sender?: string }>;
+  currentUser: string;
 }
 
-const ListMessages = ({ messages }: MessageProps) => {
+const ListMessages = ({ messages, currentUser }: MessageProps) => {
   return (
     <Fragment>
       {messages.length > 1 ? (
-        <Timeline position="alternate" sx={{ border: "1px solid red" }}>
+        <Timeline position="left">
           {messages
             .filter((item) => item.active && item.content !== "initial_message")
             .map((msg, index) => (
-              <TimelineItem key={index}>
+              <TimelineItem key={index} sx={{ display: "block" }}>
                 <TimelineContent
                   sx={{
                     display: "flex",
                     flexDirection: "column",
-                    alignItems: "flex-start",
+                    alignItems: `flex-${currentUser === msg.sender ? "end" : "start"}`,
                   }}
                 >
                   <Card variant="outlined">

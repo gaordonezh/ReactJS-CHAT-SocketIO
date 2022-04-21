@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import {
   Box,
   Card,
@@ -22,6 +22,7 @@ interface UserProps {
   sendMessage: Function;
   text: string;
   setText: Function;
+  currentUser: string;
 }
 
 const Messages = ({
@@ -31,6 +32,7 @@ const Messages = ({
   sendMessage,
   text,
   setText,
+  currentUser,
 }: UserProps) => {
   const { height } = useCustomContext();
 
@@ -53,7 +55,7 @@ const Messages = ({
         <ScrollBar style={{ height }}>
           <CardContent sx={{ pb: 5, border: "1px solid green" }} component="div">
             {messages.length > 0 ? (
-              <ListMessages messages={messages} />
+              <ListMessages messages={messages} currentUser={currentUser} />
             ) : (
               <CreateRoom receiver={receiver} obtainMessages={obtainMessages} />
             )}
