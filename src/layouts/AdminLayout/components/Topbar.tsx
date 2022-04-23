@@ -6,7 +6,7 @@ const Topbar = () => {
   const { user } = useChatContext();
 
   return (
-    <Grid container sx={{ border: "1px solid blue" }} direction="row">
+    <Grid container direction="row" sx={{ borderBottom: "1px solid #fff", borderRadius: 1 }}>
       <Grid item xs={3}>
         <Typography component="figure">
           <Logo />

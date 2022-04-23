@@ -13,10 +13,7 @@ const Logo = () => {
 
   return (
     <Link to="/">
-      <LogoImage
-        src="https://i.pinimg.com/736x/33/b8/69/33b869f90619e81763dbf1fccc896d8d--lion-logo-modern-logo.jpg"
-        alt="Logo images"
-      />
+      <LogoImage src="https://aldo.codes/logo/white.png" alt="Logo" />
     </Link>
   );
 };

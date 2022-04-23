@@ -34,11 +34,9 @@ const SignUp = () => {
   const handleRegister = async (items: ItemsProps) => {
     try {
       setLoading(true);
-      if (items.password !== items.confirm_password)
+      if (items.password !== items.confirm_password) {
         return setError({ message: "Las contraseñas no coinciden", open: true });
-
-      items.username = items.email;
-      items.rol = "user";
+      }
 
       const res = await signUpUser(items);
       StorageService.set(SESSION_USER, res.token);

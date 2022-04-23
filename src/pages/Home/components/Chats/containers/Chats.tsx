@@ -3,7 +3,7 @@ import { useCustomContext } from "context/custom";
 import ScrollBar from "react-perfect-scrollbar";
 import Chat from "../../Chat/containers/Chat";
 
-const Chats = ({ obtainMessages, users }: { obtainMessages: Function; users: Array<{}> }) => {
+const Chats = () => {
   const { height } = useCustomContext();
 
   return (
@@ -23,8 +23,8 @@ const Chats = ({ obtainMessages, users }: { obtainMessages: Function; users: Arr
       }
     >
       <ScrollBar style={{ height }}>
-        {users.map((item, index) => (
-          <Chat key={index} usr={item} obtainMessages={obtainMessages} />
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((item, index) => (
+          <Chat key={index} />
         ))}
       </ScrollBar>
     </List>

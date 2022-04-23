@@ -12,35 +12,16 @@ import {
 import { useCustomContext } from "context/custom";
 import ScrollBar from "react-perfect-scrollbar";
 import { MoreVert } from "@mui/icons-material";
-import CreateRoom from "./components/CreateRoom";
 import ListMessages from "./components/ListMessages";
 
-interface UserProps {
-  messages: Array<object>;
-  receiver: { profile_picture?: string; f_name?: string; _id?: string };
-  obtainMessages: Function;
-  sendMessage: Function;
-  text: string;
-  setText: Function;
-  currentUser: string;
-}
-
-const Messages = ({
-  messages,
-  receiver,
-  obtainMessages,
-  sendMessage,
-  text,
-  setText,
-  currentUser,
-}: UserProps) => {
+const Messages = () => {
   const { height } = useCustomContext();
 
   return (
     <React.Fragment>
       <Card elevation={0} sx={{ width: "100%", position: "relative" }}>
         <CardHeader
-          avatar={<Avatar src={receiver.profile_picture} alt={receiver.f_name} />}
+          avatar={<Avatar src="" alt="A" />}
           action={
             <IconButton>
               <MoreVert />
@@ -48,32 +29,19 @@ const Messages = ({
           }
           title={
             <Typography color="whitesmoke" variant="h5">
-              {receiver.f_name}
+              Name
             </Typography>
           }
         />
-        <ScrollBar style={{ height }}>
-          <CardContent sx={{ pb: 5, border: "1px solid green" }} component="div">
-            {messages.length > 0 ? (
-              <ListMessages messages={messages} currentUser={currentUser} />
-            ) : (
-              <CreateRoom receiver={receiver} obtainMessages={obtainMessages} />
-            )}
+        <ScrollBar style={{ height, border: "2px solid red" }}>
+          <CardContent sx={{ pb: 5, border: "2px solid green" }} component="div">
+            <ListMessages />
           </CardContent>
         </ScrollBar>
-        {messages.length > 0 && (
-          <Box sx={{ position: "absolute", bottom: 0, width: "100%", bgcolor: "inherit" }} px={6}>
-            <TextField
-              label="Escribe tu mensaje..."
-              fullWidth
-              className="send"
-              type="text"
-              value={text}
-              onChange={(event) => setText(event.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-            />
-          </Box>
-        )}
+
+        <Box sx={{ position: "absolute", bottom: 0, width: "100%", bgcolor: "inherit" }} px={6}>
+          <TextField label="Escribe tu mensaje..." fullWidth className="send" type="text" />
+        </Box>
       </Card>
     </React.Fragment>
   );

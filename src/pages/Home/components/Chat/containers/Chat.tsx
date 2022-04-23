@@ -8,38 +8,26 @@ import {
   Typography,
 } from "@mui/material";
 
-interface UserProps {
-  usr: {
-    profile_picture?: string;
-    f_name?: string;
-    latestDate?: string;
-    latestMessage?: string;
-    room?: string;
-    _id?: string;
-  };
-  obtainMessages: Function;
-}
-
-const Chat = ({ usr, obtainMessages }: UserProps) => {
+const Chat = () => {
   return (
-    <ListItem button divider onClick={() => obtainMessages(usr)}>
+    <ListItem button divider>
       <ListItemAvatar>
-        <Avatar src={usr.profile_picture} alt={usr.f_name} variant="rounded" />
+        <Avatar src="" alt="A" variant="rounded" />
       </ListItemAvatar>
       <ListItemText
         primary={
           <Typography color="whitesmoke" noWrap>
-            {usr.f_name}
+            Name
           </Typography>
         }
         secondary={
           <Typography color="GrayText" variant="inherit" noWrap>
-            {usr.latestMessage}pending
+            last message
           </Typography>
         }
       />
       <ListItemSecondaryAction>
-        <FormHelperText component="span">{usr.latestDate}1h</FormHelperText>
+        <FormHelperText component="span">1h</FormHelperText>
       </ListItemSecondaryAction>
     </ListItem>
   );
