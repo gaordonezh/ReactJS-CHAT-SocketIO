@@ -2,8 +2,9 @@ import { Chip, List, Stack, Typography } from "@mui/material";
 import { useCustomContext } from "context/custom";
 import ScrollBar from "react-perfect-scrollbar";
 import Chat from "../../Chat/containers/Chat";
+import { UserProps } from "interfaces";
 
-const Chats = () => {
+const Chats = ({ users, getMessages }: { users: Array<UserProps>; getMessages: Function }) => {
   const { height } = useCustomContext();
 
   return (
@@ -23,8 +24,8 @@ const Chats = () => {
       }
     >
       <ScrollBar style={{ height }}>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((item, index) => (
-          <Chat key={index} />
+        {users.map((usr, index) => (
+          <Chat key={index} usr={usr} getMessages={getMessages} />
         ))}
       </ScrollBar>
     </List>

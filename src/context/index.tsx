@@ -11,6 +11,7 @@ const ChatProvider = ({ children }: { children: ReactNode }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const [user, setUser] = useState({});
+  const generalKEY = "1234567890";
 
   // SCROLL TO TOP ON CHANGE PAGE
   useEffect(() => {
@@ -33,6 +34,6 @@ const ChatProvider = ({ children }: { children: ReactNode }) => {
 
   const goToTop = () => window.scroll({ top: 0, left: 0, behavior: "smooth" });
 
-  return <Chat.Provider value={{ user, setUser }}>{children}</Chat.Provider>;
+  return <Chat.Provider value={{ user, setUser, generalKEY }}>{children}</Chat.Provider>;
 };
 export default ChatProvider;

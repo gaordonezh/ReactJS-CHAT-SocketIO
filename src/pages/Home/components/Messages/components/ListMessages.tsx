@@ -1,21 +1,25 @@
-import { Card, Typography, CardContent, Box } from "@mui/material";
+import { Card, Typography, CardContent } from "@mui/material";
 import { Timeline, TimelineItem, TimelineContent } from "@mui/lab";
+import { MessageProps } from "interfaces";
+import { useChatContext } from "context";
 
-const ListMessages = () => {
+const ListMessages = ({ msgs }: { msgs: Array<MessageProps> }) => {
+  const { user } = useChatContext();
+
   return (
     <Timeline position="left">
-      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((row, index) => (
+      {msgs.map((row, index) => (
         <TimelineItem key={index} sx={{ display: "block" }}>
           <TimelineContent
             sx={{
               display: "flex",
               flexDirection: "column",
-              alignItems: `flex-${index % 2 === 0 ? "end" : "start"}`,
+              alignItems: `flex-${row.sender === user._id ? "end" : "start"}`,
             }}
           >
             <Card variant="outlined">
               <CardContent>
-                <Typography sx={{ color: "#bbb" }}>MESSAGE test someone</Typography>
+                <Typography sx={{ color: "#bbb" }}>{row.content}</Typography>
               </CardContent>
             </Card>
           </TimelineContent>

@@ -13,8 +13,8 @@ const Topbar = () => {
         </Typography>
       </Grid>
       <Grid item xs={9}>
-        <Typography color="whitesmoke" textAlign="justify">
-          {user.f_name} | {user.email}
+        <Typography color="whitesmoke" textAlign="justify" variant="h2">
+          {user.f_name?.toUpperCase()}
         </Typography>
       </Grid>
     </Grid>

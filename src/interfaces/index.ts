@@ -23,13 +23,37 @@ export interface ThemeProps {
   spacing: Function;
 }
 
+export interface UserProps {
+  f_name?: string;
+  l_name?: string;
+  username?: string;
+  email?: string;
+  room?: string;
+  profile_picture?: string;
+  _id?: string;
+}
+
 export interface ContextProps {
-  user: { f_name?: string; l_name?: string; username?: string; email?: string; _id?: string };
+  user: UserProps;
   setUser: Function;
+  generalKEY: string;
 }
 
 export interface UseFormProps {
   handleSubmit: Function;
   register: Function;
   formState: { errors: any };
+}
+
+export interface MessageProps {
+  _id?: string;
+  content?: string;
+  sender?: string;
+}
+
+export interface CustomProps {
+  spacing: number;
+  height: string;
+  receiver: UserProps;
+  setReceiver: Function;
 }
