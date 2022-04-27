@@ -25,7 +25,7 @@ const Messages = ({ msgs, sendMessage }: { msgs: Array<MessageProps>; sendMessag
 
   const handleSend = async () => {
     sendMessage(text);
-    await wait(500);
+    await wait(100);
     setText("");
   };
 
@@ -80,6 +80,7 @@ const Messages = ({ msgs, sendMessage }: { msgs: Array<MessageProps>; sendMessag
               fullWidth
               type="text"
               value={text}
+              multiline
               onChange={(e) => setText(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSend()}
               className="send"
